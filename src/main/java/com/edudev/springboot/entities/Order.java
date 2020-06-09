@@ -25,12 +25,12 @@ public class Order {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private Instant moment;
 
+	@Column(name = "status")
+	private Integer orderStatus;
+
 	@ManyToOne
 	@JoinColumn(name = "client_id", nullable = false)
 	private User client;
-
-	@Column(name = "status")
-	private Integer orderStatus;
 
 	public Order() {
 
@@ -41,6 +41,7 @@ public class Order {
 		this.moment = moment;
 		this.client = client;
 		setOrderStatus(orderStatus);
+
 	}
 
 	public Long getId() {
