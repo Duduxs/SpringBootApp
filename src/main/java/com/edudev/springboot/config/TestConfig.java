@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Profile;
 import com.edudev.springboot.entities.Category;
 import com.edudev.springboot.entities.Order;
 import com.edudev.springboot.entities.OrderItem;
+import com.edudev.springboot.entities.Payment;
 import com.edudev.springboot.entities.Product;
 import com.edudev.springboot.entities.User;
 import com.edudev.springboot.entities.enums.OrderStatus;
@@ -59,9 +60,13 @@ public class TestConfig implements CommandLineRunner {
 		Product p4 = new Product("PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, "");
 		Product p5 = new Product("Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, "");
 
-		userRepository.saveAll(Arrays.asList(u1, u2));
-		orderRepository.saveAll(Arrays.asList(o1, o2, o3));
-		categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+		Payment pay1 = new Payment(Instant.parse("2020-10-06T20:02:07Z"), o1);
+		Payment pay2 = new Payment(Instant.parse("2020-05-04T12:30:04Z"), o2);
+		Payment pay3 = new Payment(Instant.parse("2010-10-23T06:24:05Z"), o3);
+
+		o1.setPayment(pay1);
+		o2.setPayment(pay2);
+		o3.setPayment(pay3);
 
 		p1.getCategories().add(cat2);
 		p2.getCategories().addAll(Arrays.asList(cat1, cat3));
@@ -69,13 +74,15 @@ public class TestConfig implements CommandLineRunner {
 		p4.getCategories().add(cat3);
 		p5.getCategories().add(cat2);
 
-		productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
-
 		OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice());
 		OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice());
 		OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice());
 		OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
 
+		userRepository.saveAll(Arrays.asList(u1, u2));
+		orderRepository.saveAll(Arrays.asList(o1, o2, o3));
+		categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+		productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
 		orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
 
 	}
