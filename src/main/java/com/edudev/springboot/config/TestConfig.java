@@ -45,6 +45,7 @@ public class TestConfig implements CommandLineRunner {
 
 		User u1 = new User("Edward Oliveira", "Edu123@gmail.com", "(81) 98739-5261", "1239842!ab");
 		User u2 = new User("Rachel Youru", "BamandRachel@bol.com", "(81) 4002-8922", "LieAndBetween");
+		User u3 = new User("Test", "TestCol@bol.com", "(81) 4002-8922", "LieAndBetween");
 
 		Order o1 = new Order(Instant.parse("2019-06-20T19:53:07Z"), u1, OrderStatus.SHIPPED);
 		Order o2 = new Order(Instant.parse("2019-07-22T01:53:07Z"), u1, OrderStatus.PAID);
