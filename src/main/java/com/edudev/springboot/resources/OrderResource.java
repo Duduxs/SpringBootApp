@@ -16,14 +16,15 @@ import com.edudev.springboot.services.OrderService;
 public class OrderResource {
 	@Autowired
 	OrderService orderService;
-	
+
 	@GetMapping("/find")
 	public List<Order> findAll() {
-		return orderService.findAll(); 
+		return orderService.findAll();
 	}
-	
+
 	@GetMapping(value = "/find/{id}")
 	public Order findById(@PathVariable Long id) {
 		return orderService.findById(id);
 	}
+
 }

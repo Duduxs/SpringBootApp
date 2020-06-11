@@ -32,6 +32,11 @@ public class OrderItem implements Serializable {
 		this.quantity = quantity;
 		this.price = price;
 	}
+
+	public Double getSubtotal() {
+		return price * quantity;
+	}
+
 	@JsonIgnore
 	public Order getOrder() {
 		return id.getOrder();
